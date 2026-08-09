@@ -1,23 +1,23 @@
-# 🤖 Manutenção Preditiva com Inteligência Artificial
+ Manutenção Preditiva com Inteligência Artificial
 
 Sistema de **Manutenção Preditiva** desenvolvido em Python, utilizando conceitos de **Ciência de Dados, Machine Learning, FastAPI e Streamlit** para analisar dados operacionais de máquinas e estimar o risco de falhas.
 
 O projeto apresenta um fluxo completo de aplicação de Machine Learning, desde a preparação e análise dos dados até a disponibilização do modelo por meio de uma API e sua utilização em um dashboard interativo.
 
-## 🎯 Objetivo
+Objetivo
 
 Desenvolver uma solução capaz de analisar diferentes parâmetros operacionais de uma máquina e realizar uma **previsão de risco de falha**, auxiliando na identificação antecipada de possíveis problemas.
 
 Os principais dados utilizados são:
 
-* 🌡️ Temperatura
-* 📳 Vibração
-* ⚡ Corrente elétrica
-* 🔧 Pressão
-* ⏱️ Horas de operação
-* 🔄 Número de ciclos
+*  Temperatura
+*  Vibração
+*  Corrente elétrica
+*  Pressão
+*  Horas de operação
+*  Número de ciclos
 
-## 🧠 Ciência de Dados e Machine Learning
+Ciência de Dados e Machine Learning
 
 O desenvolvimento do projeto envolve diferentes etapas do processo de Ciência de Dados:
 
@@ -33,7 +33,7 @@ O desenvolvimento do projeto envolve diferentes etapas do processo de Ciência d
 
 Os notebooks disponíveis no projeto documentam parte do processo de análise e desenvolvimento do modelo.
 
-## 📊 Dashboard Interativo
+ Dashboard Interativo
 
 O dashboard foi desenvolvido com **Streamlit** e permite ao usuário informar os parâmetros operacionais da máquina e solicitar uma análise.
 
@@ -43,7 +43,7 @@ Após o envio dos dados, o sistema apresenta:
 * Indicação de risco de falha;
 * Probabilidade estimada de falha.
 
-### Fluxo da análise
+ Fluxo da análise
 
 ```text
 Dados da máquina
@@ -61,11 +61,11 @@ Probabilidade de falha
 Resultado apresentado no Dashboard
 ```
 
-## ⚡ API REST com FastAPI
+ API REST com FastAPI
 
 A aplicação utiliza **FastAPI** para disponibilizar o modelo de Machine Learning como uma API REST.
 
-### Endpoint
+ Endpoint
 
 ```text
 POST /prever
@@ -73,7 +73,7 @@ POST /prever
 
 A API recebe os parâmetros da máquina em formato JSON e retorna a previsão e a probabilidade estimada de falha.
 
-### Exemplo de entrada
+ Exemplo de entrada
 
 ```json
 {
@@ -86,7 +86,7 @@ A API recebe os parâmetros da máquina em formato JSON e retorna a previsão e 
 }
 ```
 
-### Exemplo de resposta
+Exemplo de resposta
 
 ```json
 {
@@ -96,44 +96,44 @@ A API recebe os parâmetros da máquina em formato JSON e retorna a previsão e 
 }
 ```
 
-## 🛠️ Tecnologias utilizadas
+ Tecnologias utilizadas
 
-### Programação
+ Programação
 
 * Python
 
-### Ciência de Dados
+ Ciência de Dados
 
 * Pandas
 * NumPy
 * Jupyter Notebook
 * Análise Exploratória de Dados
 
-### Machine Learning
+ Machine Learning
 
 * Scikit-learn
 * Treinamento de modelos
 * Predição
 * Estimativa de probabilidade
 
-### API e Backend
+ API e Backend
 
 * FastAPI
 * Pydantic
 * Uvicorn
 
-### Dashboard
+ Dashboard
 
 * Streamlit
 
-### Ferramentas
+ Ferramentas
 
 * Git
 * GitHub
 * VS Code
 * Joblib
 
-## 📁 Estrutura do projeto
+ Estrutura do projeto
 
 ```text
 Manutenção Preditiva/
@@ -163,39 +163,39 @@ Manutenção Preditiva/
 
 > **Observação:** a pasta `Notebbok` mantém o nome utilizado atualmente no projeto para preservar a estrutura existente.
 
-## 🚀 Como executar
+ Como executar
 
-### 1. Clonar o repositório
+1. Clonar o repositório
 
 ```bash
 git clone https://github.com/cunharenancunha729-lab/Manuten-o---Preditiva.git
 ```
 
-### 2. Entrar na pasta
+ 2. Entrar na pasta
 
 ```bash
 cd Manuten-o---Preditiva
 ```
 
-### 3. Criar o ambiente virtual
+ 3. Criar o ambiente virtual
 
 ```bash
 python -m venv venv
 ```
 
-### 4. Ativar o ambiente virtual no Windows
+4. Ativar o ambiente virtual no Windows
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 5. Instalar as dependências
+5. Instalar as dependências
 
 ```bash
 pip install fastapi uvicorn streamlit requests pandas scikit-learn joblib
 ```
 
-## ▶️ Executando a API
+ Executando a API
 
 Execute:
 
@@ -215,7 +215,7 @@ Também é possível acessar a documentação automática da API:
 http://127.0.0.1:8000/docs
 ```
 
-## 📊 Executando o Dashboard
+Executando o Dashboard
 
 Abra outro terminal e execute:
 
@@ -229,7 +229,7 @@ O dashboard será disponibilizado em:
 http://localhost:8501
 ```
 
-## 🔍 Exemplo de funcionamento
+ Exemplo de funcionamento
 
 O usuário informa os dados operacionais da máquina:
 
@@ -253,12 +253,12 @@ O resultado pode indicar:
 ou:
 
 ```text
-⚠️ Máquina com risco de falha
+Máquina com risco de falha
 ```
 
 Além disso, o sistema apresenta a **probabilidade estimada de falha**.
 
-## 💡 Aplicação na indústria
+ Aplicação na indústria
 
 A manutenção preditiva utiliza dados operacionais para identificar padrões que podem indicar possíveis problemas em equipamentos.
 
@@ -268,7 +268,7 @@ Este projeto demonstra como tecnologias de:
 
 podem ser integradas em uma solução aplicada ao contexto industrial.
 
-## 📚 Conhecimentos demonstrados
+ Conhecimentos demonstrados
 
 Este projeto demonstra conhecimentos em:
 
@@ -285,7 +285,7 @@ Este projeto demonstra conhecimentos em:
 * Git e GitHub;
 * Automação Industrial.
 
-## 🚧 Status do projeto
+ Status do projeto
 
 **Em desenvolvimento / projeto de portfólio.**
 
@@ -299,7 +299,7 @@ Novas funcionalidades podem ser adicionadas futuramente, como:
 * Integração com sensores industriais;
 * Banco de dados para histórico de manutenção.
 
-## 👨‍💻 Autor
+ Autor
 
 **Renan Henrique Martins Cunha**
 
