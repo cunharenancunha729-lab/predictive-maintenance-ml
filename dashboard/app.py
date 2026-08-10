@@ -79,7 +79,7 @@ if st.button("Analisar Máquina", use_container_width=True):
         "ciclos": ciclos
     }
 
-    url_api = "http://127.0.0.1:8000/prever"
+    url_api = "https://manutencao-preditiva-api.onrender.com/prever"
 
     try:
         resposta = requests.post(
@@ -114,11 +114,15 @@ if st.button("Analisar Máquina", use_container_width=True):
             )
 
         else:
+             st.error(
+             f"Erro na API: {resposta.status_code}"
+             )
 
-            st.error(
-                f"Erro na API: {resposta.status_code}"
-            )
+             st.write("Resposta da API:")
+             st.json(resposta.json())
 
+
+   
     except requests.exceptions.ConnectionError:
 
         st.error(
