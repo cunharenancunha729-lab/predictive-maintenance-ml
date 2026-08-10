@@ -1,4 +1,4 @@
-import streamlit as st
+﻿import streamlit as st
 import requests
 
 st.set_page_config(
@@ -7,7 +7,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title(" Manutenção Preditiva com IA")
+st.title("Manutenção Preditiva com IA")
 
 st.write(
     "Sistema de previsão de falhas em máquinas utilizando "
@@ -16,7 +16,7 @@ st.write(
 
 st.divider()
 
-st.subheader(" Dados da Máquina")
+st.subheader("Dados da Máquina")
 
 temperatura = st.number_input(
     "Temperatura (°C)",

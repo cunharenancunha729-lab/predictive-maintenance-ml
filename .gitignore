@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 .env
 .vscode/
+api/main_backup.py
+dashboard/app_backup.py
