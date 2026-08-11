@@ -1,318 +1,635 @@
- Manutenção Preditiva com Inteligência Artificial
 
-Sistema de **Manutenção Preditiva** desenvolvido em Python, utilizando conceitos de **Ciência de Dados, Machine Learning, FastAPI e Streamlit** para analisar dados operacionais de máquinas e estimar o risco de falhas.
+ #  Sistema de Manutenção Preditiva com Machine Learning
 
-O projeto apresenta um fluxo completo de aplicação de Machine Learning, desde a preparação e análise dos dados até a disponibilização do modelo por meio de uma API e sua utilização em um dashboard interativo.
+Sistema de **Manutenção Preditiva** desenvolvido em Python para análise de condições operacionais de máquinas e previsão de risco de falhas utilizando **Machine Learning**.
 
-Objetivo
+O projeto integra **Ciência de Dados, Machine Learning, API REST, Dashboard web e conceitos de Automação Industrial**, permitindo que dados operacionais de uma máquina sejam analisados automaticamente e utilizados para estimar o risco de falha.
 
-Desenvolver uma solução capaz de analisar diferentes parâmetros operacionais de uma máquina e realizar uma **previsão de risco de falha**, auxiliando na identificação antecipada de possíveis problemas.
+A aplicação está publicada na nuvem e possui integração entre **Dashboard Streamlit → API FastAPI → Modelo de Machine Learning → Resultado da previsão**.
 
-Os principais dados utilizados são:
+---
 
-*  Temperatura
-*  Vibração
-*  Corrente elétrica
-*  Pressão
-*  Horas de operação
-*  Número de ciclos
+##  Demonstração Online
 
-Ciência de Dados e Machine Learning
+### Dashboard
 
-O desenvolvimento do projeto envolve diferentes etapas do processo de Ciência de Dados:
+Acesse o sistema:
 
-1. Geração e organização dos dados
-2. Análise exploratória dos dados
-3. Preparação dos dados para o modelo
-4. Treinamento do modelo de Machine Learning
-5. Realização das previsões
-6. Estimativa da probabilidade de falha
-7. Serialização do modelo treinado
-8. Integração do modelo com uma API
-9. Desenvolvimento de um dashboard para visualização dos resultados
+https://manutencao-preditiva-dashboard.onrender.com
 
-Os notebooks disponíveis no projeto documentam parte do processo de análise e desenvolvimento do modelo.
+### 🔌 API
 
- Dashboard Interativo
+API responsável pelo processamento das previsões:
 
-O dashboard foi desenvolvido com **Streamlit** e permite ao usuário informar os parâmetros operacionais da máquina e solicitar uma análise.
+https://manutencao-preditiva-api.onrender.com
 
-Após o envio dos dados, o sistema apresenta:
+###  Documentação da API
 
-* Status da previsão;
-* Indicação de risco de falha;
-* Probabilidade estimada de falha.
+Documentação interativa Swagger:
 
- Fluxo da análise
+https://manutencao-preditiva-api.onrender.com/docs
+
+---
+
+#  Arquitetura do Sistema
+
+A aplicação foi desenvolvida com uma arquitetura dividida em **interface, API e modelo de Machine Learning**.
 
 ```text
-Dados da máquina
-       ↓
-Dashboard Streamlit
-       ↓
+                         👤 USUÁRIO
+                             │
+                             ▼
+                  ┌────────────────────┐
+                  │     DASHBOARD      │
+                  │     Streamlit      │
+                  │    dashboard/      │
+                  └─────────┬──────────┘
+                            │
+                            │ HTTP POST
+                            │ /prever
+                            ▼
+                  ┌────────────────────┐
+                  │        API         │
+                  │      FastAPI       │
+                  │       api/         │
+                  └─────────┬──────────┘
+                            │
+                            ▼
+                  ┌────────────────────┐
+                  │ MACHINE LEARNING   │
+                  │      models/       │
+                  │                    │
+                  │ Modelo treinado    │
+                  └─────────┬──────────┘
+                            │
+                            ▼
+                  ┌────────────────────┐
+                  │      PREVISÃO      │
+                  │                    │
+                  │ 0 = Sem indicação  │
+                  │ 1 = Risco de falha │
+                  └─────────┬──────────┘
+                            │
+                            ▼
+                  ┌────────────────────┐
+                  │     DASHBOARD      │
+                  │                    │
+                  │ Resultado          │
+                  │ Probabilidade      │
+                  │ Alerta de risco    │
+                  └────────────────────┘
+```
+
+---
+
+#  Fluxo de Desenvolvimento do Machine Learning
+
+Antes de disponibilizar o modelo através da API, os dados passam pelo processo de desenvolvimento e treinamento.
+
+```text
+Data/
+   │
+   │ Dados
+   ▼
+Notebbok/
+   │
+   │ Análise exploratória
+   │ Tratamento dos dados
+   │ Treinamento
+   │ Avaliação
+   ▼
+Machine Learning
+   │
+   ▼
+models/
+   │
+   │ Modelo treinado
+   ▼
 API FastAPI
-       ↓
-Modelo de Machine Learning
-       ↓
-Previsão
-       ↓
-Probabilidade de falha
-       ↓
-Resultado apresentado no Dashboard
 ```
 
- API REST com FastAPI
+O projeto separa o processo de **desenvolvimento do modelo** do processo de **execução da aplicação**.
 
-A aplicação utiliza **FastAPI** para disponibilizar o modelo de Machine Learning como uma API REST.
+---
 
- Endpoint
-
-```text
-POST /prever
-```
-
-A API recebe os parâmetros da máquina em formato JSON e retorna a previsão e a probabilidade estimada de falha.
-
- Exemplo de entrada
-
-```json
-{
-    "temperatura": 70,
-    "vibracao": 3,
-    "corrente": 12,
-    "pressao": 6,
-    "horas_operacao": 2500,
-    "ciclos": 25000
-}
-```
-
-Exemplo de resposta
-
-```json
-{
-    "previsao": 0,
-    "resultado": "Sem indicação de falha",
-    "probabilidade_falha": 0.0
-}
-```
-
- Tecnologias utilizadas
-
- Programação
-
-* Python
-
- Ciência de Dados
-
-* Pandas
-* NumPy
-* Jupyter Notebook
-* Análise Exploratória de Dados
-
- Machine Learning
-
-* Scikit-learn
-* Treinamento de modelos
-* Predição
-* Estimativa de probabilidade
-
- API e Backend
-
-* FastAPI
-* Pydantic
-* Uvicorn
-
- Dashboard
-
-* Streamlit
-
- Ferramentas
-
-* Git
-* GitHub
-* VS Code
-* Joblib
-
- Estrutura do projeto
+#  Estrutura do Projeto
 
 ```text
 Manutenção Preditiva/
 │
 ├── api/
-│   └── main.py
+│   └── API FastAPI
 │
 ├── dashboard/
 │   └── app.py
 │
 ├── Data/
-│   └── dados_maquina.csv
+│   └── Dados utilizados no projeto
 │
 ├── models/
-│   └── modelo_manutencao_preditiva.pkl
+│   └── Modelos de Machine Learning treinados
 │
 ├── Notebbok/
-│   ├── 01_analise_dados.ipynb
-│   └── 02_machine_learning.ipynb
+│   └── Notebooks de análise e treinamento
 │
-├── generate_dataset.py
+├── src/
+│   └── Códigos-fonte auxiliares
+│
+├── venv/
+│   └── Ambiente virtual Python
 │
 ├── .gitignore
 │
-└── README.md
+├── generate_dataset.py
+│
+├── README.md
+│
+└── requirements.txt
 ```
 
-> **Observação:** a pasta `Notebbok` mantém o nome utilizado atualmente no projeto para preservar a estrutura existente.
+### Descrição das principais pastas
 
- Como executar
+#### `api/`
 
-1. Clonar o repositório
+Contém a aplicação **FastAPI**, responsável por disponibilizar o modelo através de uma API REST.
 
-```bash
-git clone https://github.com/cunharenancunha729-lab/Manuten-o---Preditiva.git
-```
-
- 2. Entrar na pasta
-
-```bash
-cd Manuten-o---Preditiva
-```
-
- 3. Criar o ambiente virtual
-
-```bash
-python -m venv venv
-```
-
-4. Ativar o ambiente virtual no Windows
-
-```powershell
-.\venv\Scripts\Activate.ps1
-```
-
-5. Instalar as dependências
-
-```bash
-pip install fastapi uvicorn streamlit requests pandas scikit-learn joblib
-```
-
- Executando a API
-
-Execute:
-
-```bash
-uvicorn api.main:app --reload
-```
-
-A API ficará disponível em:
-
-```text
-http://127.0.0.1:8000
-```
-
-Também é possível acessar a documentação automática da API:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-Executando o Dashboard
-
-Abra outro terminal e execute:
-
-```bash
-streamlit run dashboard/app.py
-```
-
-O dashboard será disponibilizado em:
-
-```text
-http://localhost:8501
-```
-
- Exemplo de funcionamento
-
-O usuário informa os dados operacionais da máquina:
-
-```text
-Temperatura:       70 °C
-Vibração:          3
-Corrente:          12 A
-Pressão:           6
-Horas de operação: 2500
-Ciclos:            25000
-```
-
-O dashboard envia essas informações para a API, que utiliza o modelo de Machine Learning para realizar a previsão.
-
-O resultado pode indicar:
-
-```text
-✅ Máquina sem indicação de falha
-```
-
-ou:
-
-```text
-Máquina com risco de falha
-```
-
-Além disso, o sistema apresenta a **probabilidade estimada de falha**.
-
- Aplicação na indústria
-
-A manutenção preditiva utiliza dados operacionais para identificar padrões que podem indicar possíveis problemas em equipamentos.
-
-Este projeto demonstra como tecnologias de:
-
-**Ciência de Dados + Machine Learning + Python + APIs + Dashboard + Automação Industrial**
-
-podem ser integradas em uma solução aplicada ao contexto industrial.
-
- Conhecimentos demonstrados
-
-Este projeto demonstra conhecimentos em:
-
-* Ciência de Dados;
-* Análise e preparação de dados;
-* Machine Learning;
-* Python;
-* Pandas;
-* Scikit-learn;
-* Desenvolvimento de APIs REST;
-* FastAPI;
-* Streamlit;
-* Integração de modelos de Machine Learning;
-* Git e GitHub;
-* Automação Industrial.
-
- Status do projeto
-
-**Em desenvolvimento / projeto de portfólio.**
-
-Novas funcionalidades podem ser adicionadas futuramente, como:
-
-* Monitoramento contínuo de máquinas;
-* Armazenamento histórico das previsões;
-* Gráficos de indicadores;
-* Sistema de alertas;
-* Melhorias na avaliação do modelo;
-* Integração com sensores industriais;
-* Banco de dados para histórico de manutenção.
-
- Autor
-
-**Renan Henrique Martins Cunha**
-
-Estudante de **Análise e Desenvolvimento de Sistemas** e **Técnico em Inteligência Artificial**, com formação em **Eletrotécnica** e experiência na área de **Automação Industrial**.
-
-Interesses profissionais:
-
-**Ciência de Dados | Inteligência Artificial | Machine Learning | Python | Análise de Dados | Automação Industrial**
-
-### 🔗 GitHub
-
-https://github.com/cunharenancunha729-lab
+A API recebe os dados da máquina enviados pelo Dashboard e retorna a previsão.
 
 ---
 
-⭐ Projeto desenvolvido para fins de estudo, portfólio profissional e aplicação prática de **Ciência de Dados, Machine Learning e Inteligência Artificial na manutenção preditiva industrial**.
+#### `dashboard/`
+
+Contém a aplicação **Streamlit**.
+
+O arquivo principal é:
+
+```text
+dashboard/app.py
+```
+
+O Dashboard permite ao usuário informar os parâmetros da máquina e executar uma análise.
+
+---
+
+#### `Data/`
+
+Contém os dados utilizados durante o desenvolvimento do projeto.
+
+Os dados são utilizados para análise e treinamento do modelo.
+
+---
+
+#### `models/`
+
+Contém os modelos de **Machine Learning treinados**.
+
+Esses modelos são utilizados pela API para realizar as previsões.
+
+---
+
+#### `Notebbok/`
+
+Contém os notebooks utilizados durante o desenvolvimento.
+
+Nessa etapa são realizadas atividades como:
+
+* Análise exploratória
+* Tratamento dos dados
+* Visualização
+* Engenharia de atributos
+* Treinamento
+* Avaliação do modelo
+
+---
+
+### `src/`
+
+Contém códigos-fonte auxiliares utilizados no projeto.
+
+---
+
+#### `venv/`
+
+Ambiente virtual Python utilizado no desenvolvimento local.
+
+A pasta é mantida apenas no ambiente de desenvolvimento e não deve ser utilizada no deploy.
+
+---
+
+### `generate_dataset.py`
+
+Script Python utilizado para geração do dataset utilizado no projeto.
+
+---
+
+####`requirements.txt`
+
+Arquivo responsável por listar as principais dependências Python necessárias para executar a aplicação.
+
+---
+
+# 🤖 Machine Learning
+
+O projeto utiliza **Machine Learning supervisionado** para realizar a classificação do estado operacional da máquina.
+
+O modelo recebe características relacionadas às condições de operação e retorna uma previsão relacionada ao risco de falha.
+
+## Variáveis utilizadas
+
+O Dashboard permite informar:
+
+| Variável          | Descrição                          |
+| ----------------- | ---------------------------------- |
+| Temperatura       | Temperatura de operação da máquina |
+| Vibração          | Nível de vibração                  |
+| Corrente          | Corrente elétrica consumida        |
+| Pressão           | Pressão de operação                |
+| Horas de operação | Tempo acumulado de operação        |
+| Ciclos            | Quantidade de ciclos realizados    |
+
+---
+
+# 🔌 API REST
+
+A API foi desenvolvida utilizando **FastAPI**.
+
+Seu principal endpoint é:
+
+```text
+POST /prever
+```
+
+Esse endpoint recebe os dados da máquina através de JSON.
+
+### Exemplo de requisição
+
+```json
+{
+    "temperatura": 140,
+    "vibracao": 9,
+    "corrente": 28,
+    "pressao": 13,
+    "horas_operacao": 9000,
+    "ciclos": 90000
+}
+```
+
+### Exemplo de resposta
+
+```json
+{
+    "previsao": 1,
+    "probabilidade_falha": 1.0
+}
+```
+
+### Interpretação
+
+```text
+previsao = 0
+```
+
+Máquina sem indicação de falha.
+
+```text
+previsao = 1
+```
+
+Máquina com indicação de risco de falha.
+
+A API também retorna a probabilidade estimada pelo modelo.
+
+---
+
+# 🖥️ Dashboard
+
+O Dashboard foi desenvolvido utilizando **Streamlit**.
+
+O usuário informa os parâmetros da máquina e seleciona:
+
+```text
+Analisar Máquina
+```
+
+O Dashboard então envia os dados para a API utilizando uma requisição HTTP.
+
+Exemplo da comunicação:
+
+```text
+Dashboard
+    │
+    │ requests.post()
+    ▼
+https://manutencao-preditiva-api.onrender.com/prever
+```
+
+A resposta da API é processada pelo Dashboard e apresentada ao usuário.
+
+---
+
+#  Comunicação entre Dashboard e API
+
+A comunicação é realizada através de uma API REST.
+
+```text
+┌───────────────────────┐
+│      Streamlit        │
+│       Dashboard       │
+└───────────┬───────────┘
+            │
+            │ POST
+            │ JSON
+            ▼
+┌───────────────────────┐
+│       FastAPI         │
+│       /prever         │
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│ Machine Learning      │
+│ Modelo treinado       │
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│ Resultado da previsão │
+└───────────┬───────────┘
+            │
+            │ JSON
+            ▼
+┌───────────────────────┐
+│      Streamlit        │
+│  Exibe o resultado    │
+└───────────────────────┘
+```
+
+---
+
+#  Testes Realizados
+
+Após a publicação do sistema, foram realizados testes diretamente no Dashboard online.
+
+## 🟢 Teste 1 — Condição normal
+
+### Dados utilizados
+
+```text
+Temperatura: 70 °C
+Vibração: 3
+Corrente: 12 A
+Pressão: 6
+Horas de operação: 2500
+Ciclos: 25000
+```
+
+### Resultado
+
+```text
+Máquina sem indicação de falha.
+
+Probabilidade de Falha:
+0,00%
+```
+
+---
+
+## 🔴 Teste 2 — Condição severa
+
+### Dados utilizados
+
+```text
+Temperatura: 140 °C
+Vibração: 9
+Corrente: 28 A
+Pressão: 13
+Horas de operação: 9000
+Ciclos: 90000
+```
+
+### Resultado
+
+```text
+ALERTA: Máquina com risco de falha!
+
+Probabilidade de Falha:
+100,00%
+```
+
+Esses testes demonstraram a comunicação completa entre o Dashboard, a API e o modelo de Machine Learning.
+
+> **Observação:** a probabilidade apresentada é a estimativa produzida pelo modelo para os dados fornecidos. Ela não representa uma garantia de ocorrência de uma falha física real.
+
+---
+
+#  Deploy
+
+O projeto foi disponibilizado na nuvem utilizando a plataforma **Render**.
+
+A arquitetura de publicação é:
+
+```text
+                         GitHub
+                            │
+                            ▼
+                         Render
+                            │
+             ┌──────────────┴──────────────┐
+             │                             │
+             ▼                             ▼
+      Dashboard Render                API Render
+             │                             │
+             ▼                             ▼
+        Streamlit                       FastAPI
+             │                             │
+             └──────────────┬──────────────┘
+                            │
+                            ▼
+                     Machine Learning
+```
+
+### Dashboard
+
+```text
+https://manutencao-preditiva-dashboard.onrender.com
+```
+
+### API
+
+```text
+https://manutencao-preditiva-api.onrender.com
+```
+
+##Swagger
+
+```text
+https://manutencao-preditiva-api.onrender.com/docs
+```
+
+---
+
+#  Tecnologias Utilizadas
+
+# Linguagem
+
+* Python
+
+# Ciência de Dados
+
+* Pandas
+* NumPy
+
+# Machine Learning
+
+* Scikit-learn
+* Joblib
+
+# Backend
+
+* FastAPI
+* Uvicorn
+* Pydantic
+
+# Dashboard
+
+* Streamlit
+
+# Comunicação
+
+* Requests
+* HTTP
+* JSON
+* API REST
+
+# Desenvolvimento
+
+* Git
+* GitHub
+* VS Code
+* Jupyter Notebook
+* Ambiente virtual Python
+
+## Deploy
+
+* Render
+
+---
+
+#  Aplicação na Indústria
+
+A proposta do projeto está relacionada aos conceitos de **Manutenção Preditiva e Indústria 4.0**.
+
+Em uma aplicação industrial real, os dados poderiam ser coletados automaticamente através de sensores e sistemas industriais.
+
+Uma possível arquitetura futura seria:
+
+```text
+Sensores
+   │
+   ▼
+CLP
+   │
+   ▼
+SCADA / IoT
+   │
+   ▼
+Banco de Dados
+   │
+   ▼
+API
+   │
+   ▼
+Machine Learning
+   │
+   ▼
+Previsão de Falha
+   │
+   ▼
+Dashboard
+   │
+   ▼
+Equipe de Manutenção
+```
+
+Essa arquitetura poderia permitir o monitoramento contínuo de equipamentos e auxiliar na tomada de decisões relacionadas à manutenção.
+
+---
+
+#  Objetivos do Projeto
+
+O projeto foi desenvolvido para:
+
+* Aplicar Machine Learning em um cenário industrial.
+* Desenvolver uma solução de Manutenção Preditiva.
+* Criar uma API REST para disponibilização do modelo.
+* Desenvolver um Dashboard interativo.
+* Integrar Python, Machine Learning e APIs.
+* Automatizar o processo de análise dos dados.
+* Realizar deploy de uma aplicação de Machine Learning.
+* Aplicar conceitos de Ciência de Dados.
+* Demonstrar uma aplicação relacionada à Indústria 4.0.
+
+---
+
+# Possíveis Evoluções
+
+O projeto pode ser expandido futuramente com:
+
+* Integração com sensores industriais.
+* Integração com CLP.
+* Integração com sistemas SCADA.
+* Comunicação MQTT.
+* Banco de dados para armazenamento histórico.
+* Monitoramento em tempo real.
+* Histórico das previsões.
+* Gráficos de temperatura e vibração.
+* Sistema de notificações.
+* Monitoramento de múltiplas máquinas.
+* Autenticação de usuários.
+* Novos algoritmos de Machine Learning.
+* Comparação entre modelos.
+* Re-treinamento automático do modelo.
+
+---
+
+ Autor
+
+ Renan Henrique Martins Cunha
+
+Estudante de **Análise e Desenvolvimento de Sistemas** e **Técnico em Inteligência Artificial**, com formação técnica em **Eletrotécnica** e experiência em **Automação Industrial**.
+
+Interesses profissionais:
+
+* Inteligência Artificial
+* Ciência de Dados
+* Machine Learning
+* Python
+* APIs
+* Automação Industrial
+* Indústria 4.0
+* Análise de Dados
+* Desenvolvimento de Sistemas
+
+ Links
+
+GitHub:
+
+https://github.com/cunharenancunha729-lab
+
+Repositório do projeto:
+
+https://github.com/cunharenancunha729-lab/Manuten-o---Preditiva
+
+Dashboard:
+
+https://manutencao-preditiva-dashboard.onrender.com
+
+API:
+
+https://manutencao-preditiva-api.onrender.com
+
+---
+
+# Licença
+
+Este projeto foi desenvolvido para fins de **estudo, portfólio e demonstração de conhecimentos** em Python, Ciência de Dados, Machine Learning, APIs, Inteligência Artificial e Automação Industrial.
