@@ -1,5 +1,5 @@
 
- #  Sistema de Manutenção Preditiva com Machine Learning
+ #  Sistema de Manutenção Preditiva com Inteligência artificial e automação. 
 
 Sistema de **Manutenção Preditiva** desenvolvido em Python para análise de condições operacionais de máquinas e previsão de risco de falhas utilizando **Machine Learning**.
 
