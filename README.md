@@ -1,4 +1,4 @@
-# 🔧 Sistema de Manutenção Preditiva com Inteligência Artificial e automação.
+# 🔧 Sistema de Manutenção Preditiva com Inteligência Artificial e Automação.
 
 Sistema completo de manutenção preditiva industrial, com arquitetura end-to-end: dashboard interativo, API própria e modelo de Machine Learning treinado — tudo publicado em produção na nuvem.
 
